@@ -15,13 +15,16 @@ Coded by www.creative-tim.com
 
 // @mui material components
 import Grid from "@mui/material/Grid";
+import Button from "@mui/material/Button";
+import Typography from "@mui/material/Typography";
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+import { styled } from "@mui/material/styles";
 
 // Material Dashboard 2 React components
 import MDBox from "components/MDBox";
 
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import DashboardNavbar from "examples/Navbars/DashboardNavbar";
 import Footer from "examples/Footer";
 import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
 import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
@@ -35,12 +38,50 @@ import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 import Projects from "layouts/dashboard/components/Projects";
 import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 
+const HeaderButton = styled(Button)({
+  boxShadow: "none",
+  textTransform: "none",
+  fontSize: 15,
+  padding: "11px 14px",
+  lineHeight: "23px",
+  backgroundColor: "#62A5FF",
+  color: "#fff",
+  borderRadius: 26,
+  height: 45,
+  width: 240,
+  gap: 9,
+  fontFamily: "Poppins",
+  "&:hover": {
+    backgroundColor: "#62A5FF",
+    boxShadow: "none",
+  },
+  "&:active": {
+    boxShadow: "none",
+    backgroundColor: "#62A5FF",
+  },
+});
+
 function Dashboard() {
   const { sales, tasks } = reportsLineChartData;
 
   return (
     <DashboardLayout>
-      <DashboardNavbar />
+      <Grid container style={{ justifyContent: "space-between" }}>
+        <Typography
+          style={{
+            color: "#5E5873",
+            fontSize: 26,
+            fontWeight: 500,
+            lineHeight: "32px",
+            fontFamily: "Montserrat",
+          }}
+        >
+          Dashboard
+        </Typography>
+        <HeaderButton variant="contained" disableRipple startIcon={<AddCircleOutlineIcon />}>
+          Publier une annonce
+        </HeaderButton>
+      </Grid>
       <MDBox py={3}>
         <Grid container spacing={3}>
           <Grid item xs={12} md={6} lg={3}>
