@@ -25,14 +25,12 @@ import MDBox from "components/MDBox";
 
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
-import Footer from "examples/Footer";
 
 // Dashboard components
-import Projects from "layouts/dashboard/components/Projects";
-import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 import Candidates from "layouts/dashboard/components/Candidates";
 import Annonces from "layouts/dashboard/components/Annonces";
 import Multiposting from "layouts/dashboard/components/Multiposting";
+import Notifications from "layouts/dashboard/components/Notifications";
 
 const HeaderButton = styled(Button)({
   boxShadow: "none",
@@ -92,18 +90,17 @@ function Dashboard() {
             </Grid>
           </Grid>
         </MDBox>
-        <MDBox py={2}>
-          <Grid container spacing={3}>
-            <Grid item xs={12} md={6} lg={8}>
-              <Projects />
+        <MDBox py={1}>
+          <Grid container spacing={1.5}>
+            <Grid item xs={12} md={5} lg={5}>
+              <Notifications />
             </Grid>
-            <Grid item xs={12} md={6} lg={4}>
-              <OrdersOverview />
+            <Grid item xs={12} md={7} lg={7}>
+              {/* Ma base CV Card */}
             </Grid>
           </Grid>
         </MDBox>
       </MDBox>
-      <Footer />
     </DashboardLayout>
   );
 }
