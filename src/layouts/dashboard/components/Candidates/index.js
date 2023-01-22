@@ -11,6 +11,9 @@ import { styled } from "@mui/material/styles";
 // Icons
 import { ReactComponent as CandidateIcon } from "assets/images/icons/dashboard icons/candidate-icon.svg";
 
+// Dashboard components
+import CardTitle from "layouts/dashboard/components/CardTitle";
+
 const CandidateButton = styled(Button)({
   boxShadow: "none",
   textTransform: "none",
@@ -38,19 +41,8 @@ function Candidates() {
   return (
     <Grid item xs={12}>
       <Card sx={{ borderRadius: "7px", paddingRight: "30px" }}>
-        <Typography
-          style={{
-            color: "#5E5873",
-            fontSize: 20,
-            fontWeight: 500,
-            lineHeight: "24px",
-            fontFamily: "Montserrat",
-            margin: "25px 0px 26px 31px",
-          }}
-        >
-          Candidats
-        </Typography>
-        <Grid container>
+        <CardTitle text="Candidats" />
+        <Grid container sx={{ marginTop: "31px" }}>
           <Grid item xs={12} md={6} lg={3} sx={{ paddingLeft: "26px", paddingBottom: "39px" }}>
             <Box
               sx={{
