@@ -40,8 +40,10 @@ const CandidateButton = styled(Button)({
 function Candidates() {
   return (
     <Grid item xs={12}>
-      <Card sx={{ borderRadius: "7px", paddingRight: "30px" }}>
-        <CardTitle text="Candidats" />
+      <Card sx={{ borderRadius: "7px", paddingRight: "30px", paddingTop: "26px" }}>
+        <Box sx={{ marginLeft: "26px" }}>
+          <CardTitle text="Candidats" />
+        </Box>
         <Grid container sx={{ marginTop: "31px" }}>
           <Grid item xs={12} md={6} lg={3} sx={{ paddingLeft: "26px", paddingBottom: "39px" }}>
             <Box

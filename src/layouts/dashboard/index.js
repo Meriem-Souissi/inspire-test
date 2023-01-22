@@ -26,18 +26,13 @@ import MDBox from "components/MDBox";
 // Material Dashboard 2 React example components
 import DashboardLayout from "examples/LayoutContainers/DashboardLayout";
 import Footer from "examples/Footer";
-// import ReportsBarChart from "examples/Charts/BarCharts/ReportsBarChart";
-// import ReportsLineChart from "examples/Charts/LineCharts/ReportsLineChart";
-
-// Data
-// import reportsBarChartData from "layouts/dashboard/data/reportsBarChartData";
-// import reportsLineChartData from "layouts/dashboard/data/reportsLineChartData";
 
 // Dashboard components
 import Projects from "layouts/dashboard/components/Projects";
 import OrdersOverview from "layouts/dashboard/components/OrdersOverview";
 import Candidates from "layouts/dashboard/components/Candidates";
 import Annonces from "layouts/dashboard/components/Annonces";
+import Multiposting from "layouts/dashboard/components/Multiposting";
 
 const HeaderButton = styled(Button)({
   boxShadow: "none",
@@ -64,8 +59,6 @@ const HeaderButton = styled(Button)({
 });
 
 function Dashboard() {
-  // const { sales, tasks } = reportsLineChartData;
-
   return (
     <DashboardLayout>
       <Grid container style={{ justifyContent: "space-between" }}>
@@ -92,7 +85,7 @@ function Dashboard() {
               <Annonces />
             </Grid>
             <Grid item xs={12} md={6} lg={3.9}>
-              {/* Multiposting Card */}
+              <Multiposting />
             </Grid>
             <Grid item xs={12} md={6} lg={5}>
               {/* Statistiques Card  */}

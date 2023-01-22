@@ -36,14 +36,13 @@ function Annonces() {
   }
   return (
     <Grid item xs={12}>
-      <Card sx={{ borderRadius: "7px" }}>
+      <Card sx={{ borderRadius: "7px", padding: "26px 5%" }}>
         <CardTitle text="Annonces" />
         <Box
           sx={{
             display: "flex",
             flexDirection: "column",
             rowGap: "37px",
-            padding: "35px 20px 40px 24px",
           }}
         >
           <Box
@@ -57,7 +56,52 @@ function Annonces() {
               sx={{
                 display: "flex",
                 alignItems: "center",
-                columnGap: "10px",
+                columnGap: "20px",
+              }}
+            >
+              {getIcon("play")}
+              <div>
+                <Typography
+                  style={{
+                    color: "#5E5873",
+                    fontSize: 20,
+                    fontWeight: 600,
+                    lineHeight: "24px",
+                    fontFamily: "Montserrat",
+                    marginBottom: "4px",
+                  }}
+                >
+                  23
+                </Typography>
+                <Typography
+                  style={{
+                    color: "#6E6B7B",
+                    fontSize: 13,
+                    fontWeight: 400,
+                    lineHeight: "20px",
+                    fontFamily: "Montserrat",
+                  }}
+                >
+                  En ligne
+                </Typography>
+              </div>
+            </Box>
+
+            <ButtonIcon />
+          </Box>
+
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "space-between",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                columnGap: "20px",
               }}
             >
               {getIcon("play")}

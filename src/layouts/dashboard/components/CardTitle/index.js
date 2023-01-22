@@ -15,7 +15,7 @@ function CardTitle({ text }) {
         fontWeight: 500,
         lineHeight: "24px",
         fontFamily: "Montserrat",
-        margin: "25px 0px 0px 26px",
+        marginBottom: "26px",
       }}
     >
       {text}
