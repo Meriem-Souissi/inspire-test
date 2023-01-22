@@ -32,6 +32,7 @@ import Annonces from "layouts/dashboard/components/Annonces";
 import Multiposting from "layouts/dashboard/components/Multiposting";
 import Notifications from "layouts/dashboard/components/Notifications";
 import Statistics from "layouts/dashboard/components/Statistics";
+import BaseCV from "layouts/dashboard/components/Base CV";
 
 const HeaderButton = styled(Button)({
   boxShadow: "none",
@@ -97,7 +98,7 @@ function Dashboard() {
               <Notifications />
             </Grid>
             <Grid item xs={12} md={7} lg={7}>
-              {/* Ma base CV Card */}
+              <BaseCV />
             </Grid>
           </Grid>
         </MDBox>

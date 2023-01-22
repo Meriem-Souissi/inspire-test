@@ -5,8 +5,8 @@ import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-// import Button from "@mui/material/Button";
-// import { styled } from "@mui/material/styles";
+
+// Charts
 import { Bar } from "react-chartjs-2";
 
 // Icons
@@ -44,7 +44,13 @@ function Statistics() {
           flexDirection: "column",
         }}
       >
-        <div style={{ display: "flex", justifyContent: "space-between", alignItems: "flex-start" }}>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "flex-start",
+          }}
+        >
           <CardTitle text="Statistiques" />
           <Box sx={{ display: "flex", alignItems: "center" }}>
             <Typography
@@ -62,8 +68,6 @@ function Statistics() {
           </Box>
         </div>
         <Bar
-          width={100}
-          height={50}
           data={{
             label: "none",
             labels: ["8/12", "9/12", "10/12", "11/12", "12/12", "13/12", "15/12"],
@@ -72,6 +76,7 @@ function Statistics() {
                 data: [3.5, 0.9, 2, 2.1, 1.7, 1, 0.4],
                 backgroundColor: "#28DAC6",
                 borderRadius: 109,
+                barThickness: 15,
               },
             ],
           }}
