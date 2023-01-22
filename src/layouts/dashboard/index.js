@@ -31,6 +31,7 @@ import Candidates from "layouts/dashboard/components/Candidates";
 import Annonces from "layouts/dashboard/components/Annonces";
 import Multiposting from "layouts/dashboard/components/Multiposting";
 import Notifications from "layouts/dashboard/components/Notifications";
+import Statistics from "layouts/dashboard/components/Statistics";
 
 const HeaderButton = styled(Button)({
   boxShadow: "none",
@@ -86,7 +87,7 @@ function Dashboard() {
               <Multiposting />
             </Grid>
             <Grid item xs={12} md={6} lg={5}>
-              {/* Statistiques Card  */}
+              <Statistics />
             </Grid>
           </Grid>
         </MDBox>
