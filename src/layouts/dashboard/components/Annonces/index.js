@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // @mui material components
 import Grid from "@mui/material/Grid";
@@ -17,7 +17,19 @@ import { ReactComponent as DesactivatedIcon } from "assets/images/icons/dashboar
 import { ReactComponent as ExpiredIcon } from "assets/images/icons/dashboard icons/expired.svg";
 import { ReactComponent as ArchiveIcon } from "assets/images/icons/dashboard icons/archive.svg";
 
+// Redux
+import { useSelector, useDispatch } from "react-redux";
+import getAnnonces from "Redux/actions/annoncesActions";
+
+// db json
+import dbJson from "../../../../db/db.json";
+
 function Annonces() {
+  const dispatch = useDispatch();
+  const annoncesState = useSelector((state) => state.annoncesReducer);
+  useEffect(() => {
+    dispatch(getAnnonces(dbJson.annonces));
+  }, []);
   function getIcon(type) {
     switch (type) {
       case "play":
@@ -45,95 +57,53 @@ function Annonces() {
             rowGap: "37px",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
+          {annoncesState.annonces.map((el) => (
             <Box
+              key={el.id}
               sx={{
                 display: "flex",
                 alignItems: "center",
-                columnGap: "20px",
+                justifyContent: "space-between",
               }}
             >
-              {getIcon("play")}
-              <div>
-                <Typography
-                  style={{
-                    color: "#5E5873",
-                    fontSize: 20,
-                    fontWeight: 600,
-                    lineHeight: "24px",
-                    fontFamily: "Montserrat",
-                    marginBottom: "4px",
-                  }}
-                >
-                  23
-                </Typography>
-                <Typography
-                  style={{
-                    color: "#6E6B7B",
-                    fontSize: 13,
-                    fontWeight: 400,
-                    lineHeight: "20px",
-                    fontFamily: "Montserrat",
-                  }}
-                >
-                  En ligne
-                </Typography>
-              </div>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  columnGap: "20px",
+                }}
+              >
+                {getIcon(el.type)}
+                <div>
+                  <Typography
+                    style={{
+                      color: "#5E5873",
+                      fontSize: 20,
+                      fontWeight: 600,
+                      lineHeight: "24px",
+                      fontFamily: "Montserrat",
+                      marginBottom: "4px",
+                    }}
+                  >
+                    {el.number}
+                  </Typography>
+                  <Typography
+                    style={{
+                      color: "#6E6B7B",
+                      fontSize: 13,
+                      fontWeight: 400,
+                      lineHeight: "20px",
+                      fontFamily: "Montserrat",
+                    }}
+                  >
+                    {el.status}
+                  </Typography>
+                </div>
+              </Box>
+
+              <ButtonIcon />
             </Box>
-
-            <ButtonIcon />
-          </Box>
-
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                columnGap: "20px",
-              }}
-            >
-              {getIcon("play")}
-              <div>
-                <Typography
-                  style={{
-                    color: "#5E5873",
-                    fontSize: 20,
-                    fontWeight: 600,
-                    lineHeight: "24px",
-                    fontFamily: "Montserrat",
-                    marginBottom: "4px",
-                  }}
-                >
-                  23
-                </Typography>
-                <Typography
-                  style={{
-                    color: "#6E6B7B",
-                    fontSize: 13,
-                    fontWeight: 400,
-                    lineHeight: "20px",
-                    fontFamily: "Montserrat",
-                  }}
-                >
-                  En ligne
-                </Typography>
-              </div>
-            </Box>
-
-            <ButtonIcon />
-          </Box>
+          ))}
         </Box>
       </Card>
     </Grid>

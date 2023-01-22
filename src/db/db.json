@@ -1,0 +1,112 @@
+{
+  "candidates": [
+    {
+      "id": 1,
+      "number": 120,
+      "desscription": "Candidatures"
+    },
+    {
+      "id": 2,
+      "number": 64,
+      "desscription": "Nouveaux profils"
+    },
+    {
+      "id": 3,
+      "number": 64,
+      "desscription": "Dossiers intéressants"
+    },
+    {
+      "id": 4,
+      "number": 535,
+      "desscription": "Dossiers favoris"
+    }
+  ],
+  "annonces": [
+    {
+      "id": 1,
+      "type": "play",
+      "number": 23,
+      "status": "En ligne"
+    },
+    {
+      "id": 2,
+      "type": "desactivated",
+      "number": 23,
+      "status": "Brouillon"
+    },
+    {
+      "id": 3,
+      "type": "brouillon",
+      "number": 23,
+      "status": "Désactivées"
+    },
+    {
+      "id": 4,
+      "type": "expired",
+      "number": 23,
+      "status": "Expirées"
+    },
+    {
+      "id": 5,
+      "type": "archive",
+      "number": 23,
+      "status": "Archivées"
+    }
+  ],
+  "multiposting": [
+    {
+      "id": 1,
+      "name": "Test.com",
+      "description": "test.com",
+      "firstAnnonces": "10 annonces",
+      "secondAnnonces": ""
+    },
+    {
+      "id": 2,
+      "name": "Jobup",
+      "description": "Jobup free",
+      "firstAnnonces": "6 annonces",
+      "secondAnnonces": "10 annonces"
+    },
+    {
+      "id": 3,
+      "name": "Indeed",
+      "description": "Indeed free",
+      "firstAnnonces": "4 annonces",
+      "secondAnnonces": "10 annonces"
+    },
+    {
+      "id": 4,
+      "name": "talent.com",
+      "description": "talent.com free",
+      "firstAnnonces": "2 annonces",
+      "secondAnnonces": "10 annonces"
+    }
+  ],
+  "notifications": [
+    {
+      "id": 1,
+      "text": "Heures à saisir pour 3 candidats",
+      "notification": "Test Fribourg",
+      "date": "28/03"
+    },
+    {
+      "id": 2,
+      "text": "Propositions de poste à 12 candidats",
+      "notification": "Test Genève",
+      "date": "28/03"
+    },
+    {
+      "id": 3,
+      "text": "Documents à signer pour M.Philippot",
+      "notification": "Test Genève",
+      "date": "28/03"
+    },
+    {
+      "id": 4,
+      "text": "Nouveau message de Emilie Philippot",
+      "notification": "Bonjour Ahmed,  Je voulais savoir si vous aviez reçu mes relevés d’heures...",
+      "date": "28/03"
+    }
+  ]
+}

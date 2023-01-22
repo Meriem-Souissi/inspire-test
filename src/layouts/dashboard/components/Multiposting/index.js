@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // @mui material components
 import Grid from "@mui/material/Grid";
@@ -17,6 +17,13 @@ import { ReactComponent as TalentIcon } from "assets/images/icons/dashboard icon
 
 // Dashboard components
 import CardTitle from "layouts/dashboard/components/CardTitle";
+
+// Redux
+import { useSelector, useDispatch } from "react-redux";
+import getMultiposting from "Redux/actions/multipostingActions";
+
+// db json
+import dbJson from "../../../../db/db.json";
 
 const MultipostingButton = styled(Button)({
   boxShadow: "none",
@@ -42,6 +49,12 @@ const MultipostingButton = styled(Button)({
 });
 
 function Multiposting() {
+  const dispatch = useDispatch();
+  const multipostingState = useSelector((state) => state.multipostingReducer);
+
+  useEffect(() => {
+    dispatch(getMultiposting(dbJson.multiposting));
+  }, []);
   function getIcon(type) {
     switch (type) {
       case "Test.com":
@@ -73,77 +86,84 @@ function Multiposting() {
             flexDirection: "column",
           }}
         >
-          <Box
-            sx={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "space-between",
-            }}
-          >
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "center",
-                columnGap: "20px",
-              }}
-            >
-              {getIcon("Test.com")}
-              <div>
-                <Typography
-                  style={{
-                    color: "#5E5873",
-                    fontSize: 16,
-                    fontWeight: 500,
-                    lineHeight: "26px",
-                    fontFamily: "Poppins",
-                    marginBottom: "4px",
+          {multipostingState.multiposting.map((el) => (
+            <>
+              <Box
+                key={el.id}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "space-between",
+                }}
+              >
+                <Box
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    columnGap: "20px",
                   }}
                 >
-                  Test.com
-                </Typography>
-                <Typography
-                  style={{
-                    color: "#A8A8A8",
-                    fontSize: 13,
-                    fontWeight: 400,
-                    lineHeight: "20px",
-                    fontFamily: "Montserrat",
-                  }}
-                >
-                  test.com
-                </Typography>
-              </div>
-            </Box>
+                  {getIcon(el.name)}
+                  <div>
+                    <Typography
+                      style={{
+                        color: "#5E5873",
+                        fontSize: 16,
+                        fontWeight: 500,
+                        lineHeight: "26px",
+                        fontFamily: "Poppins",
+                        marginBottom: "4px",
+                      }}
+                    >
+                      {el.name}
+                    </Typography>
+                    <Typography
+                      style={{
+                        color: "#A8A8A8",
+                        fontSize: 13,
+                        fontWeight: 400,
+                        lineHeight: "20px",
+                        fontFamily: "Montserrat",
+                      }}
+                    >
+                      {el.description}
+                    </Typography>
+                  </div>
+                </Box>
 
-            <div>
-              <Typography
-                style={{
-                  color: "#5096F4",
-                  fontSize: 13,
-                  fontWeight: 600,
-                  lineHeight: "20px",
-                  fontFamily: "Poppins",
-                  marginBottom: "4px",
-                }}
-              >
-                10 annonces
-              </Typography>
-              <Typography
-                style={{
-                  color: "#A8A8A8",
-                  fontSize: 13,
-                  fontWeight: 400,
-                  lineHeight: "20px",
-                  fontFamily: "Poppins",
-                }}
-              >
-                6 annonces
-              </Typography>
-            </div>
-            {/* <Divider /> */}
-          </Box>
-          <Divider sx={{ border: "1.09px solid #D8D6DE", margin: "20px 0px" }} />
-          <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
+                <div>
+                  <Typography
+                    style={{
+                      color: "#5096F4",
+                      fontSize: 13,
+                      fontWeight: 600,
+                      lineHeight: "20px",
+                      fontFamily: "Poppins",
+                      marginBottom: "4px",
+                    }}
+                  >
+                    {el.firstAnnonces}
+                  </Typography>
+                  <Typography
+                    style={{
+                      color: "#A8A8A8",
+                      fontSize: 13,
+                      fontWeight: 400,
+                      lineHeight: "20px",
+                      fontFamily: "Poppins",
+                    }}
+                  >
+                    {el.secondAnnonces}
+                  </Typography>
+                </div>
+              </Box>
+              {el.id === 4 ? null : (
+                <Divider sx={{ border: "1.09px solid #D8D6DE", margin: "20px 0px" }} />
+              )}
+            </>
+          ))}
+
+          <Box sx={{ display: "flex", justifyContent: "flex-end", marginTop: "30px" }}>
             <MultipostingButton variant="contained">Voir les annonces</MultipostingButton>
           </Box>
         </Box>

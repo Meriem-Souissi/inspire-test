@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // @mui material components
 import Grid from "@mui/material/Grid";
@@ -18,7 +18,20 @@ import { ReactComponent as Dot4Icon } from "assets/images/icons/dashboard icons/
 // Dashboard components
 import CardTitle from "layouts/dashboard/components/CardTitle";
 
+// Redux
+import { useSelector, useDispatch } from "react-redux";
+import getNotifications from "Redux/actions/notificationsActions";
+
+// db json
+import dbJson from "../../../../db/db.json";
+
 function Notifications() {
+  const dispatch = useDispatch();
+  const notificationsState = useSelector((state) => state.notificationsReducer);
+
+  useEffect(() => {
+    dispatch(getNotifications(dbJson.notifications));
+  }, []);
   const MultipostingButton = styled(Button)({
     boxShadow: "none",
     textTransform: "none",
@@ -72,61 +85,67 @@ function Notifications() {
             flexDirection: "column",
           }}
         >
-          <Box
-            sx={{
-              position: "relative",
-              borderLeft: "1.09px solid #EBE9F1",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              paddingLeft: "4%",
-              paddingBottom: "12px",
-            }}
-          >
-            <div style={{ position: "absolute", top: "0px", left: "-11px" }}>{getIcon(0)}</div>
-            <div>
-              <Typography
-                style={{
-                  color: "#5E5873",
-                  fontSize: 15,
-                  fontWeight: 500,
-                  lineHeight: "25px",
-                  fontFamily: "Montserrat",
-                  marginBottom: "4px",
-                }}
-              >
-                Heures à saisir pour 3 candidats
-              </Typography>
-              <Typography
-                style={{
-                  color: "#6E6B7B",
-                  fontSize: 15,
-                  fontWeight: 400,
-                  lineHeight: "25px",
-                  fontFamily: "Montserrat",
-                }}
-              >
-                Test Fribourg
-              </Typography>
-            </div>
-
-            <div>
-              <Typography
-                style={{
-                  color: "#A8A8A8",
-                  fontSize: 13,
-                  fontWeight: 400,
-                  lineHeight: "20px",
-                  fontFamily: "Poppins",
-                }}
-              >
-                28/03
-              </Typography>
-              <div style={{ display: "flex", justifyContent: "flex-end" }}>
-                <ArrowRightCircleIcon />
+          {notificationsState.notifications.map((el, index) => (
+            <Box
+              key={el.id}
+              sx={{
+                position: "relative",
+                borderLeft: "1.09px solid #EBE9F1",
+                display: "flex",
+                justifyContent: "space-between",
+                alignItems: "flex-start",
+                paddingLeft: "4%",
+                paddingBottom: "12px",
+              }}
+            >
+              <div style={{ position: "absolute", top: "0px", left: "-11px" }}>
+                {getIcon(index)}
               </div>
-            </div>
-          </Box>
+              <div>
+                <Typography
+                  style={{
+                    color: "#5E5873",
+                    fontSize: 15,
+                    fontWeight: 500,
+                    lineHeight: "25px",
+                    fontFamily: "Montserrat",
+                    marginBottom: "4px",
+                  }}
+                >
+                  {el.text}
+                </Typography>
+                <Typography
+                  style={{
+                    color: "#6E6B7B",
+                    fontSize: 15,
+                    fontWeight: 400,
+                    lineHeight: "25px",
+                    fontFamily: "Montserrat",
+                  }}
+                >
+                  {el.notification}
+                </Typography>
+              </div>
+
+              <div>
+                <Typography
+                  style={{
+                    color: "#A8A8A8",
+                    fontSize: 13,
+                    fontWeight: 400,
+                    lineHeight: "20px",
+                    fontFamily: "Poppins",
+                  }}
+                >
+                  {el.date}
+                </Typography>
+                <div style={{ display: "flex", justifyContent: "flex-end" }}>
+                  <ArrowRightCircleIcon />
+                </div>
+              </div>
+            </Box>
+          ))}
+
           <Box sx={{ display: "flex", justifyContent: "flex-end" }}>
             <MultipostingButton variant="contained">Voir les annonces</MultipostingButton>
           </Box>

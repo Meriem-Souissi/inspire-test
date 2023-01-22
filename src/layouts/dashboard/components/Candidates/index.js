@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // @mui material components
 import Grid from "@mui/material/Grid";
@@ -13,6 +13,13 @@ import { ReactComponent as CandidateIcon } from "assets/images/icons/dashboard i
 
 // Dashboard components
 import CardTitle from "layouts/dashboard/components/CardTitle";
+
+// Redux
+import { useSelector, useDispatch } from "react-redux";
+import getCandidtes from "Redux/actions/candidatesActions";
+
+// db json
+import dbJson from "../../../../db/db.json";
 
 const CandidateButton = styled(Button)({
   boxShadow: "none",
@@ -38,58 +45,73 @@ const CandidateButton = styled(Button)({
 });
 
 function Candidates() {
+  const dispatch = useDispatch();
+  const candidatesState = useSelector((state) => state.candidatesReducer);
+
+  useEffect(() => {
+    dispatch(getCandidtes(dbJson.candidates));
+  }, []);
   return (
     <Grid item xs={12}>
       <Card sx={{ borderRadius: "7px", paddingRight: "30px", paddingTop: "26px" }}>
-        <Box sx={{ marginLeft: "26px" }}>
+        <Box sx={{ marginLeft: "1%" }}>
           <CardTitle text="Candidats" />
         </Box>
         <Grid container sx={{ marginTop: "31px" }}>
-          <Grid item xs={12} md={6} lg={3} sx={{ paddingLeft: "26px", paddingBottom: "39px" }}>
-            <Box
-              sx={{
-                display: "flex",
-                alignItems: "flex-start",
-                columnGap: "38px",
-                marginBottom: "38px",
-              }}
+          {candidatesState.candidates.map((el) => (
+            <Grid
+              item
+              xs={12}
+              md={6}
+              lg={3}
+              sx={{ paddingLeft: "1%", paddingBottom: "39px" }}
+              key={el.id}
             >
-              <CandidateIcon />
-              <div>
-                <Typography
-                  style={{
-                    color: "#5E5873",
-                    fontSize: 26,
-                    fontWeight: 600,
-                    lineHeight: "32px",
-                    fontFamily: "Montserrat",
-                    marginBottom: "5px",
-                  }}
-                >
-                  120
-                </Typography>
-                <Typography
-                  style={{
-                    color: "#6E6B7B",
-                    fontSize: 15,
-                    fontWeight: 400,
-                    lineHeight: "23px",
-                    fontFamily: "Poppins",
-                  }}
-                >
-                  Candidates
-                </Typography>
-              </div>
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                justifyContent: "flex-end",
-              }}
-            >
-              <CandidateButton variant="contained">Voir les candidatures</CandidateButton>
-            </Box>
-          </Grid>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "flex-start",
+                  columnGap: "2%",
+                  marginBottom: "38px",
+                }}
+              >
+                <CandidateIcon />
+                <div>
+                  <Typography
+                    style={{
+                      color: "#5E5873",
+                      fontSize: 26,
+                      fontWeight: 600,
+                      lineHeight: "32px",
+                      fontFamily: "Montserrat",
+                      marginBottom: "5px",
+                    }}
+                  >
+                    {el.number}
+                  </Typography>
+                  <Typography
+                    style={{
+                      color: "#6E6B7B",
+                      fontSize: 15,
+                      fontWeight: 400,
+                      lineHeight: "23px",
+                      fontFamily: "Poppins",
+                    }}
+                  >
+                    {el.desscription}
+                  </Typography>
+                </div>
+              </Box>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                }}
+              >
+                <CandidateButton variant="contained">Voir les candidatures</CandidateButton>
+              </Box>
+            </Grid>
+          ))}
         </Grid>
       </Card>
     </Grid>
