@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 // @mui material components
 import Grid from "@mui/material/Grid";
@@ -15,7 +15,21 @@ import { ReactComponent as ChevronDownIcon } from "assets/images/icons/dashboard
 // Dashboard components
 import CardTitle from "layouts/dashboard/components/CardTitle";
 
+// Redux
+import { useSelector, useDispatch } from "react-redux";
+import getStatistics from "Redux/actions/statisticsActions";
+
+// db json
+import dbJson from "../../../../db/db.json";
+
 function Statistics() {
+  const dispatch = useDispatch();
+  const statisticsState = useSelector((state) => state.statisticsReducer);
+
+  useEffect(() => {
+    dispatch(getStatistics(dbJson.barChart));
+  }, []);
+  const maxValue = Math.max(...statisticsState.statistics);
   const statisticsInfos = [
     {
       number: 5,
@@ -39,7 +53,7 @@ function Statistics() {
       <Card
         sx={{
           borderRadius: "7px",
-          padding: "24px 5% 30px 5%",
+          padding: "24px 5% 110px 5%",
           display: "flex",
           flexDirection: "column",
         }}
@@ -73,7 +87,7 @@ function Statistics() {
             labels: ["8/12", "9/12", "10/12", "11/12", "12/12", "13/12", "15/12"],
             datasets: [
               {
-                data: [3.5, 0.9, 2, 2.1, 1.7, 1, 0.4],
+                data: statisticsState.statistics,
                 backgroundColor: "#28DAC6",
                 borderRadius: 109,
                 barThickness: 15,
@@ -100,7 +114,7 @@ function Statistics() {
                 },
               },
               y: {
-                max: 4,
+                max: maxValue * 1.2,
                 ticks: {
                   stepSize: 1,
                   display: false,
@@ -115,6 +129,7 @@ function Statistics() {
             display: "flex",
             flexWrap: "wrap",
             justifyContent: "space-between",
+            rowGap: "16px",
           }}
         >
           {statisticsInfos.map((el, index) => (

@@ -108,5 +108,7 @@
       "notification": "Bonjour Ahmed,  Je voulais savoir si vous aviez reçu mes relevés d’heures...",
       "date": "28/03"
     }
-  ]
+  ],
+  "barChart": [3.5, 1.9, 2, 2.1, 1.7, 1, 5.3],
+  "lineChart": [140, 190, 150, 220, 170, 320, 75, 300, 230, 370, 280, 250]
 }

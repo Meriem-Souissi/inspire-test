@@ -55,8 +55,8 @@ function Multiposting() {
   useEffect(() => {
     dispatch(getMultiposting(dbJson.multiposting));
   }, []);
-  function getIcon(type) {
-    switch (type) {
+  function getIcon(name) {
+    switch (name) {
       case "Test.com":
         return <TestIcon />;
       case "Jobup":
